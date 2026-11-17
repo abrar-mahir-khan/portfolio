@@ -184,7 +184,9 @@ body.menu-open{overflow:hidden}
   .portrait-frame{width:100%;height:100%;background:#1a1a1a}
   .portrait-frame img{width:100%;height:100%;object-fit:cover;object-position:center 18%;}
   .portrait-frame:after{background:linear-gradient(180deg,rgba(17,17,17,.38) 0%,rgba(17,17,17,.05) 36%,rgba(17,17,17,.74) 68%,rgba(17,17,17,.96) 100%)}
-  :root.light .portrait-frame:after{background:linear-gradient(180deg,rgba(238,237,232,.45) 0%,rgba(238,237,232,.05) 36%,rgba(238,237,232,.78) 68%,rgba(238,237,232,.97) 100%)}
+  :root.light .portrait-frame:after {
+    background: linear-gradient(180deg,rgba(220,231,232,.45) -100%,rgba(238,237,232,.05) 50%,rgba(238,237,232,.78) 68%,rgba(238,237,232,.97) 100%);
+}
   .portrait-note{right:12px;top:14px;font-size:8px;color:#f0eee9;text-shadow:0 1px 8px rgba(0,0,0,.6)}
   .hero__copy{position:relative;z-index:3;padding:0 16px}
   .hero__intro{font-size:11px;font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:inline-flex;align-items:center;gap:6px}

@@ -1,0 +1,244 @@
+{
+  "site": {
+    "title": "Abrar Mahir khan — Front-end Developer",
+    "description": "Abrar Mahir Khan — Front-end developer creating thoughtful, modern digital experiences.",
+    "brandLeft": "Abrar",
+    "brandRight": "Dev",
+    "loaderText": "Abrar-Mahir-khan",
+    "availability": "Available for select projects",
+    "showAvailability": true,
+    "accentDark": "#d5ff45",
+    "accentLight": "#6a7d00",
+    "menuLocation": "Dhaka, Bangladesh",
+    "menuTagline": "Let’s make something meaningful.",
+    "footerText": "© 2026 ABRAR MAHIR KHAN | Front-end Developer",
+    "backToTop": "Back to top"
+  },
+  "nav": [
+    {
+      "id": "home",
+      "label": "Home",
+      "show": true
+    },
+    {
+      "id": "about",
+      "label": "About",
+      "show": true
+    },
+    {
+      "id": "expertise",
+      "label": "Expertise",
+      "show": true
+    },
+    {
+      "id": "work",
+      "label": "Selected work",
+      "show": true
+    },
+    {
+      "id": "experience",
+      "label": "Experience",
+      "show": true
+    },
+    {
+      "id": "contact",
+      "label": "Contact",
+      "show": true
+    }
+  ],
+  "hero": {
+    "eyebrow": "Independent front-end developer",
+    "year": "© 2026",
+    "intro": "Hello, I’m Abrar Mahir Khan.",
+    "title1": "Design-minded",
+    "title2": "developer",
+    "titleDot": ".",
+    "text": "I build refined, responsive and interactive digital experiences with a strong eye for detail.",
+    "ctaLabel": "Explore\nmy work",
+    "ctaLink": "#work",
+    "portrait": "assets/img/Abrar mahir khan (2).png",
+    "portraitAlt": "Portrait of Abrar Mahir Khan",
+    "portraitNote": "Curiosity\ninto craft.",
+    "scrollText": "Scroll to discover",
+    "location": "Based in Bangladesh"
+  },
+  "about": {
+    "kickerLeft": "01 / A little intro",
+    "kickerRight": "About me",
+    "heading": "I turn thoughtful\ndesign into *living*\ndigital experiences.",
+    "lead": "I’m a front-end developer focused on bringing digital ideas to life through clean code, considered details and purposeful interaction.",
+    "text": "With experience translating Figma designs into responsive websites, I enjoy the space where design and development meet. I care about the small things — rhythm, spacing, movement and how every element feels to use.",
+    "linkLabel": "More about working together",
+    "linkUrl": "#contact",
+    "meta": [
+      {
+        "label": "Based in",
+        "value": "Dhaka, Bangladesh"
+      },
+      {
+        "label": "Focus",
+        "value": "Front-end development / UI implementation"
+      },
+      {
+        "label": "Approach",
+        "value": "Detail-oriented & curious"
+      }
+    ]
+  },
+  "expertise": {
+    "kickerLeft": "02 / What I do",
+    "kickerRight": "Expertise",
+    "heading": "A mix of logic\n& *visual craft.*",
+    "text": "From the first pixel to the final interaction, I aim to make every detail feel intentional.",
+    "items": [
+      {
+        "title": "Front-end development",
+        "text": "Responsive, accessible and maintainable interfaces built with modern web fundamentals."
+      },
+      {
+        "title": "Figma to website",
+        "text": "Turning design systems and visual concepts into accurate, polished web experiences."
+      },
+      {
+        "title": "Interaction & motion",
+        "text": "Adding purposeful movement and micro-interactions that make interfaces feel alive."
+      }
+    ],
+    "skills": [
+      "HTML5",
+      "CSS / SCSS",
+      "JavaScript",
+      "jQuery",
+      "GSAP",
+      "Responsive UI",
+      "Figma",
+      "Git"
+    ]
+  },
+  "work": {
+    "kickerLeft": "03 / A few highlights",
+    "kickerRight": "Selected work",
+    "heading": "Selected\n*projects.*",
+    "text": "A selection of digital experiences. Click any project card to view the live project.",
+    "note": "",
+    "projects": [
+      {
+        "show": true,
+        "title": "Creative Studio",
+        "category": "Website design / Front-end development",
+        "url": "https://example.com/creative-studio",
+        "image": "",
+        "style": "one",
+        "mockBar": "studio / digital",
+        "mockTag": "CREATIVE STUDIO — 2026",
+        "mockHeadline": "Make it\n*matter.*",
+        "mockCaption": "Independent creative direction"
+      },
+      {
+        "show": true,
+        "title": "Objects Store",
+        "category": "E-commerce / UI development",
+        "url": "https://example.com/objects-store",
+        "image": "",
+        "style": "two",
+        "mockTag": "OBJECTS / 01",
+        "mockHeadline": "Everyday\nessentials.",
+        "mockCaption": "CURATED GOODS — SHOP NOW ↗"
+      },
+      {
+        "show": true,
+        "title": "Form Architecture",
+        "category": "Portfolio / Interaction design",
+        "url": "https://example.com/form-architecture",
+        "image": "",
+        "style": "three",
+        "mockTag": "FORM / FUNCTION",
+        "mockHeadline": "Space\nto feel.",
+        "mockCaption": "ARCHITECTURE & INTERIORS"
+      },
+      {
+        "show": true,
+        "title": "Nova Analytics",
+        "category": "Web application / GSAP UI",
+        "url": "https://example.com/nova-dashboard",
+        "image": "",
+        "style": "four",
+        "mockBar": "nova / analytics",
+        "mockTag": "FINTECH SAAS — 2026",
+        "mockHeadline": "Scale\n*faster.*",
+        "mockCaption": "Interactive UI & motion"
+      },
+      {
+        "show": true,
+        "title": "Kinetix Agency",
+        "category": "Creative showcase / Frontend",
+        "url": "https://example.com/kinetix-agency",
+        "image": "",
+        "style": "five",
+        "mockTag": "KINETIX / 02",
+        "mockHeadline": "Digital\ncraft.",
+        "mockCaption": "BRAND IDENTITY — EXPLORE ↗"
+      },
+      {
+        "show": true,
+        "title": "Veloce Travel",
+        "category": "Responsive web / UI implementation",
+        "url": "https://example.com/veloce-travel",
+        "image": "",
+        "style": "six",
+        "mockTag": "EXPLORE / WORLD",
+        "mockHeadline": "Move\nfreely.",
+        "mockCaption": "BOOKING PLATFORM UI"
+      }
+    ]
+  },
+  "experience": {
+    "kickerLeft": "04 / The journey",
+    "kickerRight": "Experience",
+    "heading": "Where I’ve\n*been.*",
+    "items": [
+      {
+        "date": "2024 — Present",
+        "title": "Front-end Developer",
+        "company": "Web development agency",
+        "text": "Building responsive websites for international clients, translating Figma designs into functional and polished interfaces."
+      },
+      {
+        "date": "Ongoing",
+        "title": "Learning & exploration",
+        "company": "Independent practice",
+        "text": "Continuously exploring JavaScript, GSAP, interaction design and modern front-end workflows."
+      }
+    ]
+  },
+  "contact": {
+    "kickerLeft": "05 / Have a project?",
+    "kickerRight": "Get in touch",
+    "overline": "Have an idea in mind?",
+    "title": "Let’s make\n*it happen.*",
+    "email": "hello@example.com",
+    "phone": "+880 1700-000000",
+    "phoneLabel": "Call / WhatsApp",
+    "web3formsKey": "",
+    "formEndpoint": "",
+    "bottomText": "I’m always open to thoughtful conversations, interesting collaborations and new opportunities.",
+    "socials": [
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/"
+      },
+      {
+        "platform": "x",
+        "url": "https://x.com/"
+      },
+      {
+        "platform": "whatsapp",
+        "url": "https://wa.me/"
+      }
+    ]
+  }
+}

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#111111">
+  <title>Admin login</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#111;--surface:#191919;--text:#f0eee9;--muted:#92918d;--line:#343432;--accent:#d5ff45;--font:"Manrope",system-ui,sans-serif;--mono:"DM Mono",monospace}
+    *{box-sizing:border-box;margin:0}
+    html{scrollbar-width:thin;scrollbar-color:var(--accent) var(--bg)}
+    body{min-height:100vh;display:grid;place-items:center;padding:24px;background:var(--bg);color:var(--text);font:14px/1.6 var(--font);
+      background-image:radial-gradient(60% 50% at 50% 0%,rgba(213,255,69,.07),transparent 70%)}
+    .card{width:100%;max-width:400px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:34px 30px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+    .brand{font-size:22px;font-weight:800;letter-spacing:-1.2px}.brand span{color:var(--accent)}
+    .tag{font:10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:22px 0 6px}
+    h1{font-size:26px;font-weight:700;letter-spacing:-.04em;line-height:1.15;margin-bottom:6px}
+    p.sub{color:var(--muted);font-size:13px;margin-bottom:24px}
+    label{display:block;font:10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+    input,textarea{width:100%;background:#0f0f0e;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font:inherit;outline:none;margin-bottom:16px;transition:border-color .2s,box-shadow .2s}
+    input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+    textarea{font:12px/1.5 var(--mono);height:150px;resize:vertical}
+    button{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:8px;border:1px solid var(--line);padding:13px 20px;background:#2a2a28;color:var(--text)}
+    button.primary{width:100%;background:var(--accent);color:#111;border-color:var(--accent);transition:opacity .2s}
+    button.primary:hover{opacity:.88}button[disabled]{opacity:.5;cursor:wait}
+    .msg{min-height:20px;margin-top:14px;font:11px var(--mono);color:var(--accent)}.msg.err{color:#ff8a80}
+    .row{display:flex;gap:8px;margin-bottom:12px}.row button{flex:1}
+    .back{display:inline-block;margin-top:22px;color:var(--muted);font:11px var(--mono);letter-spacing:.06em;text-decoration:none}.back:hover{color:var(--accent)}
+    ol{padding-left:18px;color:var(--muted);font-size:12px;margin-bottom:16px}ol b{color:var(--text)}code{font-family:var(--mono);color:var(--accent)}
+    [hidden]{display:none!important}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="brand">Abrar<span>.</span>Mahir</div>
+
+    <!-- Login -->
+    <form id="loginForm" hidden autocomplete="off">
+      <div class="tag">Admin</div>
+      <h1>Welcome back.</h1>
+      <p class="sub">Log in to edit your portfolio.</p>
+      <label for="pw">Password</label>
+      <input id="pw" type="password" autocomplete="current-password" required autofocus>
+      <button class="primary" type="submit" id="loginBtn">Log in</button>
+      <div class="msg" id="loginMsg" role="status"></div>
+    </form>
+
+    <!-- First-time setup (shown only while data/auth.json does not exist) -->
+    <form id="setupForm" hidden autocomplete="off">
+      <div class="tag">First-time setup</div>
+      <h1>Create your password.</h1>
+      <p class="sub">This makes the file that locks the admin login.</p>
+      <label for="np">New password (min 10 characters)</label>
+      <input id="np" type="password" autocomplete="new-password" minlength="10" required>
+      <label for="np2">Repeat password</label>
+      <input id="np2" type="password" autocomplete="new-password" minlength="10" required>
+      <button class="primary" type="submit" id="setupBtn">Generate auth file</button>
+      <div class="msg" id="setupMsg" role="status"></div>
+      <div id="setupOut" hidden>
+        <ol>
+          <li>Download <b>auth.json</b> (or copy the text below).</li>
+          <li>Put it in your repo as <code>data/auth.json</code> and commit.</li>
+          <li>Wait ~1 minute for the deploy, then reload this page and log in.</li>
+        </ol>
+        <textarea id="authText" readonly></textarea>
+        <div class="row"><button type="button" id="copyBtn">Copy</button><button type="button" id="dlBtn">Download auth.json</button></div>
+      </div>
+    </form>
+
+    <a class="back" href="../">← Back to site</a>
+  </main>
+
+<script>
+(function () {
+  "use strict";
+  var SESSION_KEY = "abrar-admin-session";
+  var SESSION_HOURS = 12;
+  var ITER = 210000;
+  var $ = function (id) { return document.getElementById(id); };
+  var enc = new TextEncoder();
+
+  function toHex(buf) { return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ("0" + b.toString(16)).slice(-2); }).join(""); }
+  function fromHex(h) { var a = new Uint8Array(h.length / 2); for (var i = 0; i < a.length; i++) a[i] = parseInt(h.substr(i * 2, 2), 16); return a; }
+  function derive(password, salt, iter) {
+    return crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveBits"]).then(function (key) {
+      return crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: salt, iterations: iter }, key, 256);
+    });
+  }
+  function same(a, b) { if (a.length !== b.length) return false; var r = 0; for (var i = 0; i < a.length; i++) r |= a.charCodeAt(i) ^ b.charCodeAt(i); return r === 0; }
+
+  if (!window.crypto || !crypto.subtle) {
+    $("loginForm").hidden = false;
+    $("loginMsg").className = "msg err";
+    $("loginMsg").textContent = "This page needs HTTPS (secure connection).";
+    return;
+  }
+
+  // already logged in? go straight to the site
+  try { var s = JSON.parse(localStorage.getItem(SESSION_KEY) || "null"); if (s && s.exp > Date.now()) { location.replace("../"); return; } } catch (e) {}
+
+  var auth = null, fails = 0;
+  fetch("../data/auth.json?v=" + Date.now(), { cache: "no-store" })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .catch(function () { return null; })
+    .then(function (j) {
+      auth = j && j.hash && j.salt ? j : null;
+      $(auth ? "loginForm" : "setupForm").hidden = false;
+    });
+
+  $("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var btn = $("loginBtn"), msg = $("loginMsg");
+    msg.className = "msg"; msg.textContent = "";
+    btn.disabled = true;
+    var wait = fails >= 3 ? Math.min(fails * 1000, 8000) : 0;
+    setTimeout(function () {
+      derive($("pw").value, fromHex(auth.salt), auth.iterations || ITER).then(function (bits) {
+        if (same(toHex(bits), auth.hash)) {
+          try { localStorage.setItem(SESSION_KEY, JSON.stringify({ exp: Date.now() + SESSION_HOURS * 3600 * 1000 })); } catch (err) {
+            msg.className = "msg err"; msg.textContent = "Browser storage is blocked — enable it to log in."; btn.disabled = false; return;
+          }
+          msg.textContent = "Logged in ✓";
+          location.replace("../");
+        } else {
+          fails++;
+          msg.className = "msg err"; msg.textContent = "Wrong password.";
+          $("pw").select(); btn.disabled = false;
+        }
+      });
+    }, wait);
+  });
+
+  $("setupForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var msg = $("setupMsg"); msg.className = "msg"; msg.textContent = "";
+    var a = $("np").value, b = $("np2").value;
+    if (a.length < 10) { msg.className = "msg err"; msg.textContent = "Use at least 10 characters."; return; }
+    if (a !== b) { msg.className = "msg err"; msg.textContent = "Passwords do not match."; return; }
+    $("setupBtn").disabled = true;
+    var salt = crypto.getRandomValues(new Uint8Array(16));
+    derive(a, salt, ITER).then(function (bits) {
+      var json = JSON.stringify({ salt: toHex(salt), iterations: ITER, hash: toHex(bits) }, null, 2) + "\n";
+      $("authText").value = json;
+      $("setupOut").hidden = false;
+      $("setupBtn").disabled = false;
+      msg.textContent = "Done ✓ — now add it to your repo.";
+    });
+  });
+  $("copyBtn").addEventListener("click", function () {
+    $("authText").select();
+    (navigator.clipboard ? navigator.clipboard.writeText($("authText").value) : Promise.resolve(document.execCommand("copy"))).then(function () { $("copyBtn").textContent = "Copied ✓"; });
+  });
+  $("dlBtn").addEventListener("click", function () {
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([$("authText").value], { type: "application/json" }));
+    a.download = "auth.json"; document.body.appendChild(a); a.click(); a.remove();
+  });
+})();
+</script>
+</body>
+</html>

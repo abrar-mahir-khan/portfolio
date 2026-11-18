@@ -159,37 +159,37 @@
       },
       {
         "show": true,
-        "title": "Nova Analytics",
+        "title": "Slurpz Drinks",
         "category": "Web application / GSAP UI",
-        "url": "https://example.com/nova-dashboard",
-        "image": "",
+        "url": "https://slurpz.co.uk/",
+        "image": "assets/uploads/mwlx7pbj-slurpz-co-uk.png",
         "style": "four",
-        "mockBar": "nova / analytics",
-        "mockTag": "FINTECH SAAS — 2026",
-        "mockHeadline": "Scale\n*faster.*",
-        "mockCaption": "Interactive UI & motion"
+        "mockBar": "",
+        "mockTag": "",
+        "mockHeadline": "",
+        "mockCaption": ""
       },
       {
         "show": true,
-        "title": "Kinetix Agency",
+        "title": "Grub Club",
         "category": "Creative showcase / Frontend",
-        "url": "https://example.com/kinetix-agency",
-        "image": "",
+        "url": "https://mygrubclub.com/",
+        "image": "assets/uploads/mwlxi0ez-grub-club.png",
         "style": "five",
-        "mockTag": "KINETIX / 02",
-        "mockHeadline": "Digital\ncraft.",
-        "mockCaption": "BRAND IDENTITY — EXPLORE ↗"
+        "mockTag": "",
+        "mockHeadline": "",
+        "mockCaption": ""
       },
       {
         "show": true,
-        "title": "Veloce Travel",
+        "title": "Amber Jean",
         "category": "Responsive web / UI implementation",
-        "url": "https://example.com/veloce-travel",
-        "image": "",
+        "url": "https://amberjeanshop.com/",
+        "image": "assets/uploads/mwlxlp29-amber-jean.png",
         "style": "six",
-        "mockTag": "EXPLORE / WORLD",
-        "mockHeadline": "Move\nfreely.",
-        "mockCaption": "BOOKING PLATFORM UI"
+        "mockTag": "",
+        "mockHeadline": "",
+        "mockCaption": ""
       }
     ]
   },

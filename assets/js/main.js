@@ -294,7 +294,7 @@
     $("#abrar-accent-style").text(":root{--accent:" + accD + ";--adm-accent:" + accD + "}:root.light{--accent:" + safeColor(s.accentLight, "#6a7d00") + ";--adm-accent:" + accD + "}");
 
     // ---- header / brand / loader ----
-    // Each letter is its own element so the intro can drop them in one by one.
+    // Each LETTER is its own element so the intro can drop them in one by one, like rain.
     const brandLetters = function (t) {
       return Array.from(String(t == null ? "" : t)).map(function (ch) { return '<i class="bl">' + (ch === " " ? "&nbsp;" : esc(ch)) + "</i>"; }).join("");
     };
@@ -589,8 +589,8 @@
         $(".reveal").css({ opacity: 1, transform: "none" });
         return;
       }
-      // Brand: letters fall from the top, one after another.
-      gsap.from(".brand .bl", { y: -64, opacity: 0, rotation: -14, duration: .95, stagger: .085, delay: .25, ease: "back.out(1.9)", clearProps: "transform,opacity" });
+      // Brand: every letter falls straight down from the top like rain, one after another.
+      gsap.from(".brand .bl", { y: -160, opacity: 0, duration: .7, stagger: .14, delay: .25, ease: "bounce.out", clearProps: "transform,opacity" });
       gsap.from(".hero__eyebrow", { y: 18, opacity: 0, duration: .8, ease: "power3.out" });
       gsap.from(".title-inner", { yPercent: 110, duration: 1.15, stagger: .12, ease: "power4.out", delay: .12 });
       gsap.from(".hero__intro, .hero__bottom, .hero__portrait, .hero__footer", { y: 28, opacity: 0, duration: .9, stagger: .12, ease: "power3.out", delay: .35 });

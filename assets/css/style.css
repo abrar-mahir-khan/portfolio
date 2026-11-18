@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Firjar:wght@400..800&display=swap");
 
 :root {
   --bg: #111;
@@ -124,10 +124,10 @@ body.menu-open {
 }
 
 .brand {
-  font-family: "Syne", var(--font);
-  font-size: 24px;
-  font-weight: 800;
-  letter-spacing: -.015em;
+  font-family: "Firjar", var(--font);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: .01em;
   line-height: 1;
   display: inline-flex;
   align-items: baseline;

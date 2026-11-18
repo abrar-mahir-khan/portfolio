@@ -562,14 +562,6 @@
     if (scrollToTarget(id)) event.preventDefault();
   });
 
-  // Brand hover: a small wave runs through the letters.
-  let brandWaving = false;
-  $(document).on("mouseenter", ".brand", function () {
-    if (!window.gsap || reducedMotion || brandWaving || !introDone) return;
-    brandWaving = true;
-    gsap.to(".brand .bl", { y: -6, duration: .2, stagger: .045, yoyo: true, repeat: 1, ease: "power2.out", onComplete: function () { brandWaving = false; } });
-  });
-
   // Intro animation + scroll reveals (run once content is rendered)
   function startExperience() {
     if (window.gsap && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);

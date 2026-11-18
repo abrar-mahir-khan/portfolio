@@ -125,15 +125,15 @@
     "projects": [
       {
         "show": true,
-        "title": "Creative Studio",
+        "title": "Mighty Mouthcare",
         "category": "Website design / Front-end development",
-        "url": "https://example.com/creative-studio",
+        "url": "https://mightymouthcare.com/",
         "image": "",
         "style": "one",
-        "mockBar": "studio / digital",
-        "mockTag": "CREATIVE STUDIO — 2026",
-        "mockHeadline": "Make it\n*matter.*",
-        "mockCaption": "Independent creative direction"
+        "mockBar": "",
+        "mockTag": "",
+        "mockHeadline": "",
+        "mockCaption": ""
       },
       {
         "show": true,

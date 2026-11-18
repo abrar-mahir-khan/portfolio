@@ -335,7 +335,8 @@
     setHTML($("#expertise .section-heading"), rich(ex.heading));
     setText($(".expertise__head > p"), ex.text);
     setHTML($(".expertise-list"), (ex.items || []).map(function (it, i) {
-      return '<article class="expertise-item reveal"><span class="expertise-num">' + pad(i + 1) + "</span><div><h3>" + esc(it.title) + "</h3><p>" + esc(it.text) + '</p></div><span class="expertise-arrow">↗&#xFE0E;</span></article>';
+      // return '<article class="expertise-item reveal"><span class="expertise-num">' + pad(i + 1) + "</span><div><h3>" + esc(it.title) + "</h3><p>" + esc(it.text) + '</p></div><span class="expertise-arrow">↗&#xFE0E;</span></article>';
+      return '<article class="expertise-item reveal"><span class="expertise-num">' + pad(i + 1) + '</span><div><h3>' + esc(it.title) + '</h3><p>' + esc(it.text) + '</p></div><span class="expertise-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span></article>';
     }).join(""));
     setHTML($(".skill-cloud"), (ex.skills || []).map(function (k) { return "<span>" + esc(k) + "</span>"; }).join(""));
 
@@ -964,7 +965,7 @@
       const ctrl = (f.fixed ? "" : '') +
         '<button type="button" class="adm-mini" data-act="up" data-list="' + esc(path) + '" data-i="' + i + '" title="Move up"' + (i === 0 ? " disabled" : "") + '>↑</button>' +
         '<button type="button" class="adm-mini" data-act="down" data-list="' + esc(path) + '" data-i="' + i + '" title="Move down"' + (i === arr.length - 1 ? " disabled" : "") + '>↓</button>' + (f.fixed ? "" :
-        '<button type="button" class="adm-mini is-del" data-act="del" data-list="' + esc(path) + '" data-i="' + i + '" title="Delete">✕</button>');
+          '<button type="button" class="adm-mini is-del" data-act="del" data-list="' + esc(path) + '" data-i="' + i + '" title="Delete">✕</button>');
       const body = f.fields.map(function (sf) {
         return fieldHTML(sf, ip + "." + sf.path, sf.path === f.titleKey ? " data-titlefield" : "");
       }).join("");

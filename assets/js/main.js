@@ -294,7 +294,11 @@
     $("#abrar-accent-style").text(":root{--accent:" + accD + ";--adm-accent:" + accD + "}:root.light{--accent:" + safeColor(s.accentLight, "#6a7d00") + ";--adm-accent:" + accD + "}");
 
     // ---- header / brand / loader ----
-    setHTML($(".brand"), esc(s.brandLeft) + "<span>.</span>" + esc(s.brandRight));
+    // Each letter is its own element so the intro can drop them in one by one.
+    const brandLetters = function (t) {
+      return Array.from(String(t == null ? "" : t)).map(function (ch) { return '<i class="bl">' + (ch === " " ? "&nbsp;" : esc(ch)) + "</i>"; }).join("");
+    };
+    setHTML($(".brand"), brandLetters(s.brandLeft) + '<span class="bl">.</span>' + brandLetters(s.brandRight));
     $(".brand").attr("aria-label", s.brandLeft + "." + s.brandRight + " home");
     setText($(".page-loader > span"), s.loaderText);
     setHTML($(".availability"), "<i></i> " + esc(s.availability));
@@ -558,6 +562,14 @@
     if (scrollToTarget(id)) event.preventDefault();
   });
 
+  // Brand hover: a small wave runs through the letters.
+  let brandWaving = false;
+  $(document).on("mouseenter", ".brand", function () {
+    if (!window.gsap || reducedMotion || brandWaving || !introDone) return;
+    brandWaving = true;
+    gsap.to(".brand .bl", { y: -6, duration: .2, stagger: .045, yoyo: true, repeat: 1, ease: "power2.out", onComplete: function () { brandWaving = false; } });
+  });
+
   // Intro animation + scroll reveals (run once content is rendered)
   function startExperience() {
     if (window.gsap && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
@@ -585,6 +597,8 @@
         $(".reveal").css({ opacity: 1, transform: "none" });
         return;
       }
+      // Brand: letters fall from the top, one after another.
+      gsap.from(".brand .bl", { y: -64, opacity: 0, rotation: -14, duration: .95, stagger: .085, delay: .25, ease: "back.out(1.9)", clearProps: "transform,opacity" });
       gsap.from(".hero__eyebrow", { y: 18, opacity: 0, duration: .8, ease: "power3.out" });
       gsap.from(".title-inner", { yPercent: 110, duration: 1.15, stagger: .12, ease: "power4.out", delay: .12 });
       gsap.from(".hero__intro, .hero__bottom, .hero__portrait, .hero__footer", { y: 28, opacity: 0, duration: .9, stagger: .12, ease: "power3.out", delay: .35 });

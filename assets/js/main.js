@@ -226,7 +226,7 @@
 
   // Arrow icons as inline SVG (identical on every device, no emoji on iPhone)
   const ARROW_PATHS = {
-    ne: '<line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>',
+    ne: '<line x1="0" y1="27" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>',
     se: '<line x1="7" y1="7" x2="17" y2="17"/><polyline points="17 7 17 17 7 17"/>',
     up: '<line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>'
   };

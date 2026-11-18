@@ -325,8 +325,7 @@
       $(".intro__text .lead").after(parasHTML);
       $(".intro__text").data("_p", parasHTML);
     }
-    // setHTML($(".text-link"), esc(a.linkLabel) + " <span>↗</span>");
-    return '<article class="expertise-item reveal"><span class="expertise-num">' + pad(i + 1) + '</span><div><h3>' + esc(it.title) + '</h3><p>' + esc(it.text) + '</p></div><span class="expertise-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span></article>';
+    setHTML($(".text-link"), esc(a.linkLabel) + " <span>↗</span>");
     $(".text-link").attr("href", safeUrl(a.linkUrl));
     setHTML($(".about-meta"), (a.meta || []).map(function (m) { return "<span>" + esc(m.label) + " <b>" + esc(m.value) + "</b></span>"; }).join(""));
 

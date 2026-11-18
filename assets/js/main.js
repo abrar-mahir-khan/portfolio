@@ -335,7 +335,7 @@
     setHTML($("#expertise .section-heading"), rich(ex.heading));
     setText($(".expertise__head > p"), ex.text);
     setHTML($(".expertise-list"), (ex.items || []).map(function (it, i) {
-      return '<article class="expertise-item reveal"><span class="expertise-num">' + pad(i + 1) + "</span><div><h3>" + esc(it.title) + "</h3><p>" + esc(it.text) + '</p></div><span class="expertise-arrow">↗</span></article>';
+      return '<article class="expertise-item reveal"><span class="expertise-num">' + pad(i + 1) + "</span><div><h3>" + esc(it.title) + "</h3><p>" + esc(it.text) + '</p></div><span class="expertise-arrow">↗&#xFE0E;</span></article>';
     }).join(""));
     setHTML($(".skill-cloud"), (ex.skills || []).map(function (k) { return "<span>" + esc(k) + "</span>"; }).join(""));
 

@@ -325,7 +325,8 @@
       $(".intro__text .lead").after(parasHTML);
       $(".intro__text").data("_p", parasHTML);
     }
-    setHTML($(".text-link"), esc(a.linkLabel) + " <span>↗</span>");
+    // setHTML($(".text-link"), esc(a.linkLabel) + " <span>↗</span>");
+    return '<article class="expertise-item reveal"><span class="expertise-num">' + pad(i + 1) + '</span><div><h3>' + esc(it.title) + '</h3><p>' + esc(it.text) + '</p></div><span class="expertise-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span></article>';
     $(".text-link").attr("href", safeUrl(a.linkUrl));
     setHTML($(".about-meta"), (a.meta || []).map(function (m) { return "<span>" + esc(m.label) + " <b>" + esc(m.value) + "</b></span>"; }).join(""));
 
@@ -335,7 +336,6 @@
     setHTML($("#expertise .section-heading"), rich(ex.heading));
     setText($(".expertise__head > p"), ex.text);
     setHTML($(".expertise-list"), (ex.items || []).map(function (it, i) {
-      // return '<article class="expertise-item reveal"><span class="expertise-num">' + pad(i + 1) + "</span><div><h3>" + esc(it.title) + "</h3><p>" + esc(it.text) + '</p></div><span class="expertise-arrow">↗&#xFE0E;</span></article>';
       return '<article class="expertise-item reveal"><span class="expertise-num">' + pad(i + 1) + '</span><div><h3>' + esc(it.title) + '</h3><p>' + esc(it.text) + '</p></div><span class="expertise-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="0" y1="27" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span></article>';
     }).join(""));
     setHTML($(".skill-cloud"), (ex.skills || []).map(function (k) { return "<span>" + esc(k) + "</span>"; }).join(""));

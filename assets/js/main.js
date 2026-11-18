@@ -144,6 +144,11 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
+  // iPhone/Safari turns text arrows (↗ ↘ ↑ ...) into colourful emoji.
+  // Adding the "text presentation" selector (U+FE0E) keeps them as plain glyphs.
+  function noEmoji(s) {
+    return String(s).replace(/[↗↘↖↙↑↓←→]\uFE0E?/g, function (m) { return m.charAt(0) + "\uFE0E"; });
+  }
   // Mini markup for headings: new line = <br>, *word* = <em>word</em>
   function rich(s) {
     return esc(s).replace(/\*([^*\n]+)\*/g, "<em>$1</em>").replace(/\r?\n/g, "<br>");
@@ -178,10 +183,11 @@
     o[t[t.length - 1]] = val;
   }
   function setText($e, v) {
-    v = String(v == null ? "" : v);
+    v = noEmoji(v == null ? "" : v);
     if ($e.data("_t") !== v) { $e.text(v).data("_t", v); }
   }
   function setHTML($e, h) {
+    h = noEmoji(h);
     if ($e.data("_h") !== h) { $e.html(h).data("_h", h); }
   }
 
@@ -218,6 +224,17 @@
   const SOCIAL_GLYPHS = { linkedin: "in", github: "Gh", behance: "Bē", youtube: "YT", dribbble: "Dr", telegram: "Tg", tiktok: "Tk", website: "↗" };
   const SOCIAL_LABELS = { facebook: "Facebook", instagram: "Instagram", x: "Twitter / X", whatsapp: "WhatsApp", linkedin: "LinkedIn", github: "GitHub", behance: "Behance", youtube: "YouTube", dribbble: "Dribbble", telegram: "Telegram", tiktok: "TikTok", website: "Website" };
 
+  // Arrow icons as inline SVG (identical on every device, no emoji on iPhone)
+  const ARROW_PATHS = {
+    ne: '<line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>',
+    se: '<line x1="7" y1="7" x2="17" y2="17"/><polyline points="17 7 17 17 7 17"/>',
+    up: '<line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>'
+  };
+  function ARROW(dir, size) {
+    size = size || 16;
+    return '<svg class="arr" width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + ARROW_PATHS[dir] + "</svg>";
+  }
+
   function socialHTML(s) {
     const icon = SOCIAL_ICONS[s.platform] || '<span class="soc-glyph">' + esc(SOCIAL_GLYPHS[s.platform] || "↗") + "</span>";
     const label = SOCIAL_LABELS[s.platform] || "Link";
@@ -247,13 +264,15 @@
   function projectHTML(p) {
     const href = p.url ? ' href="' + esc(safeUrl(p.url)) + '" target="_blank" rel="noopener noreferrer"' : "";
     return '<a class="project-card reveal"' + href + ">" + projectVisualHTML(p) +
-      '<div class="project-info"><div><h3>' + esc(p.title) + "</h3><p>" + esc(p.category) + '</p></div><span class="project-open">↗</span></div></a>';
+      '<div class="project-info"><div><h3>' + esc(p.title) + "</h3><p>" + esc(p.category) + '</p></div><span class="project-open">' + ARROW("ne", 20) + "</span></div></a>";
   }
 
   function injectBaseStyles() {
     if ($("#abrar-base-style").length) return;
     $("head").append('<style id="abrar-base-style">' +
       "[hidden]{display:none!important}" +
+      ".arr{display:inline-block;flex:none;vertical-align:middle}" +
+      ".expertise-arrow svg,.project-open svg,.round-link b svg{display:block}" +
       ".project-visual .project-cover{width:100%;height:100%;object-fit:cover;transition:transform .65s var(--ease)}" +
       ".project-card:hover .project-cover{transform:scale(1.04)}" +
       ".social-links .soc-glyph{font:600 11px var(--mono);letter-spacing:0}" +
@@ -303,7 +322,7 @@
     setHTML($(".title-inner").eq(0), esc(h.title1));
     setHTML($(".title-inner").eq(1), esc(h.title2) + (h.titleDot ? '<span class="accent-dot">' + esc(h.titleDot) + "</span>" : ""));
     setText($(".hero__bottom > p"), h.text);
-    setHTML($(".round-link"), "<span>" + rich(h.ctaLabel) + "</span><b>↘</b>");
+    setHTML($(".round-link"), "<span>" + rich(h.ctaLabel) + "</span><b>" + ARROW("se", 22) + "</b>");
     $(".round-link").attr({ href: safeUrl(h.ctaLink), "aria-label": String(h.ctaLabel).replace(/\s+/g, " ") });
     const heroSrc = srcOf(h.portrait);
     const $portrait = $(".portrait-frame img");
@@ -325,7 +344,7 @@
       $(".intro__text .lead").after(parasHTML);
       $(".intro__text").data("_p", parasHTML);
     }
-    setHTML($(".text-link"), esc(a.linkLabel) + " <span>↗</span>");
+    setHTML($(".text-link"), esc(a.linkLabel) + " <span>" + ARROW("ne", 14) + "</span>");
     $(".text-link").attr("href", safeUrl(a.linkUrl));
     setHTML($(".about-meta"), (a.meta || []).map(function (m) { return "<span>" + esc(m.label) + " <b>" + esc(m.value) + "</b></span>"; }).join(""));
 
@@ -335,7 +354,7 @@
     setHTML($("#expertise .section-heading"), rich(ex.heading));
     setText($(".expertise__head > p"), ex.text);
     setHTML($(".expertise-list"), (ex.items || []).map(function (it, i) {
-      return '<article class="expertise-item reveal"><span class="expertise-num">' + pad(i + 1) + '</span><div><h3>' + esc(it.title) + '</h3><p>' + esc(it.text) + '</p></div><span class="expertise-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="0" y1="27" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span></article>';
+      return '<article class="expertise-item reveal"><span class="expertise-num">' + pad(i + 1) + '</span><div><h3>' + esc(it.title) + '</h3><p>' + esc(it.text) + '</p></div><span class="expertise-arrow">' + ARROW("ne", 20) + '</span></article>';
     }).join(""));
     setHTML($(".skill-cloud"), (ex.skills || []).map(function (k) { return "<span>" + esc(k) + "</span>"; }).join(""));
 
@@ -362,16 +381,16 @@
     setText($("#contact .section-kicker span").eq(1), ct.kickerRight);
     setText($(".contact-overline"), ct.overline);
     setHTML($(".contact-title"), rich(ct.title));
-    setHTML($(".contact-email"), esc(ct.email) + " <span>↗</span>");
+    setHTML($(".contact-email"), esc(ct.email) + " <span>" + ARROW("ne", 16) + "</span>");
     $(".contact-email").attr("href", "mailto:" + ct.email).prop("hidden", !ct.email);
-    setHTML($(".contact-phone"), "<small>" + esc(ct.phoneLabel) + "</small> " + esc(ct.phone) + " <span>↗</span>");
+    setHTML($(".contact-phone"), "<small>" + esc(ct.phoneLabel) + "</small> " + esc(ct.phone) + " <span>" + ARROW("ne", 16) + "</span>");
     $(".contact-phone").attr("href", "tel:" + String(ct.phone).replace(/[^\d+]/g, "")).prop("hidden", !ct.phone);
     setText($(".contact-bottom > p"), ct.bottomText);
     setHTML($(".social-links"), (ct.socials || []).map(socialHTML).join(""));
 
     // ---- footer ----
     setText($(".footer__inner > span").first(), s.footerText);
-    setHTML($(".back-top"), esc(s.backToTop) + ' <span aria-hidden="true">↑</span>');
+    setHTML($(".back-top"), esc(s.backToTop) + ' <span aria-hidden="true">' + ARROW("up", 14) + "</span>");
 
     // New elements must be visible when rendered after the intro animation.
     if (introDone || opts.live) {

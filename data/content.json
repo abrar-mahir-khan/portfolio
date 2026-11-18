@@ -113,7 +113,8 @@
       "GSAP",
       "Responsive UI",
       "Figma",
-      "Git"
+      "Git",
+      "GitHub"
     ]
   },
   "work": {
@@ -125,10 +126,10 @@
     "projects": [
       {
         "show": true,
-        "title": "Mighty Mouthcare",
+        "title": "MAYAH",
         "category": "Website design / Front-end development",
-        "url": "https://mightymouthcare.com/",
-        "image": "",
+        "url": "https://www.mayah.co.uk/",
+        "image": "assets/uploads/mwlwvh34-mayah.png",
         "style": "one",
         "mockBar": "",
         "mockTag": "",
@@ -137,59 +138,107 @@
       },
       {
         "show": true,
-        "title": "Objects Store",
-        "category": "E-commerce / UI development",
-        "url": "https://example.com/objects-store",
-        "image": "",
-        "style": "two",
-        "mockTag": "OBJECTS / 01",
-        "mockHeadline": "Everyday\nessentials.",
-        "mockCaption": "CURATED GOODS — SHOP NOW ↗"
-      },
-      {
-        "show": true,
-        "title": "Form Architecture",
-        "category": "Portfolio / Interaction design",
-        "url": "https://example.com/form-architecture",
-        "image": "",
-        "style": "three",
-        "mockTag": "FORM / FUNCTION",
-        "mockHeadline": "Space\nto feel.",
-        "mockCaption": "ARCHITECTURE & INTERIORS"
-      },
-      {
-        "show": true,
-        "title": "Nova Analytics",
-        "category": "Web application / GSAP UI",
-        "url": "https://example.com/nova-dashboard",
-        "image": "",
-        "style": "four",
-        "mockBar": "nova / analytics",
-        "mockTag": "FINTECH SAAS — 2026",
-        "mockHeadline": "Scale\n*faster.*",
-        "mockCaption": "Interactive UI & motion"
-      },
-      {
-        "show": true,
-        "title": "Kinetix Agency",
-        "category": "Creative showcase / Frontend",
-        "url": "https://example.com/kinetix-agency",
-        "image": "",
-        "style": "five",
-        "mockTag": "KINETIX / 02",
-        "mockHeadline": "Digital\ncraft.",
-        "mockCaption": "BRAND IDENTITY — EXPLORE ↗"
-      },
-      {
-        "show": true,
-        "title": "Veloce Travel",
+        "title": "Amber Jean",
         "category": "Responsive web / UI implementation",
-        "url": "https://example.com/veloce-travel",
-        "image": "",
+        "url": "https://amberjeanshop.com/",
+        "image": "assets/uploads/mwlxlp29-amber-jean.png",
         "style": "six",
-        "mockTag": "EXPLORE / WORLD",
-        "mockHeadline": "Move\nfreely.",
-        "mockCaption": "BOOKING PLATFORM UI"
+        "mockTag": "",
+        "mockHeadline": "",
+        "mockCaption": ""
+      },
+      {
+        "show": true,
+        "title": "Venturi Labs",
+        "category": "Category / Role",
+        "url": "https://venturi-labs.com/",
+        "image": "assets/uploads/mwlxxmpl-venturi.png",
+        "style": "one",
+        "mockBar": "",
+        "mockTag": "",
+        "mockHeadline": "",
+        "mockCaption": ""
+      },
+      {
+        "show": true,
+        "title": "Cazcabel Tequila",
+        "category": "Category / Role",
+        "url": "https://cazcabel.com/",
+        "image": "assets/uploads/mwlxrxke-cazcable.png",
+        "style": "one",
+        "mockBar": "",
+        "mockTag": "",
+        "mockHeadline": "",
+        "mockCaption": ""
+      },
+      {
+        "show": true,
+        "title": "Slurpz Drinks",
+        "category": "Web application / GSAP UI",
+        "url": "https://slurpz.co.uk/",
+        "image": "assets/uploads/mwlx7pbj-slurpz-co-uk.png",
+        "style": "four",
+        "mockBar": "",
+        "mockTag": "",
+        "mockHeadline": "",
+        "mockCaption": ""
+      },
+      {
+        "show": true,
+        "title": "Mighty Mouthcare",
+        "category": "Portfolio / Interaction design",
+        "url": "https://mightymouthcare.com/",
+        "image": "assets/uploads/mwlx1lzm-mighty-mouthcare.png",
+        "style": "three",
+        "mockTag": "",
+        "mockHeadline": "",
+        "mockCaption": ""
+      },
+      {
+        "show": true,
+        "title": "Jungle Squad",
+        "category": "E-commerce / UI development",
+        "url": "https://junglesquad.com/",
+        "image": "assets/uploads/mwlwy5e2-junglesquad.png",
+        "style": "two",
+        "mockTag": "",
+        "mockHeadline": "",
+        "mockCaption": ""
+      },
+      {
+        "show": true,
+        "title": "Grub Club",
+        "category": "Creative showcase / Frontend",
+        "url": "https://mygrubclub.com/",
+        "image": "assets/uploads/mwlxi0ez-grub-club.png",
+        "style": "five",
+        "mockTag": "",
+        "mockHeadline": "",
+        "mockCaption": ""
+      },
+      {
+        "show": true,
+        "title": "RaiRai",
+        "category": "Category / Role",
+        "url": "https://rairai.com/",
+        "image": "assets/uploads/mwlxv5vu-rairai.png",
+        "style": "one",
+        "mockBar": "",
+        "mockTag": "",
+        "mockHeadline": "",
+        "mockCaption": ""
+      },
+      {
+        "show": true,
+        "title": "Shanky's Whip",
+        "category": "Category / Role",
+        "url": "https://shankyswhip.com/",
+        "image": "assets/uploads/mwly17et-shanky-s-whip.png",
+        "style": "one",
+        "mockBar": "",
+        "mockTag": "",
+        "mockHeadline": "",
+        "mockCaption": ""
       }
     ]
   },
@@ -199,7 +248,7 @@
     "heading": "Where I’ve\n*been.*",
     "items": [
       {
-        "date": "2024 — Present",
+        "date": "2023 — Present",
         "title": "Front-end Developer",
         "company": "Web development agency",
         "text": "Building responsive websites for international clients, translating Figma designs into functional and polished interfaces."
@@ -217,8 +266,8 @@
     "kickerRight": "Get in touch",
     "overline": "Have an idea in mind?",
     "title": "Let’s make\n*it happen.*",
-    "email": "hello@example.com",
-    "phone": "+880 1700-000000",
+    "email": "kmahir0944@gmail.com",
+    "phone": "+880 1602-962187",
     "phoneLabel": "Call / WhatsApp",
     "web3formsKey": "",
     "formEndpoint": "",
@@ -226,19 +275,19 @@
     "socials": [
       {
         "platform": "facebook",
-        "url": "https://www.facebook.com/"
+        "url": "https://www.facebook.com/abrar.mahir.khan.2024"
       },
       {
         "platform": "instagram",
-        "url": "https://www.instagram.com/"
+        "url": "https://www.instagram.com/abrar_k_h_an?gwpx=aHE3ZGowZDBhbnk%3D&utm_source=qr"
       },
       {
         "platform": "x",
-        "url": "https://x.com/"
+        "url": "https://x.com/Abrar_khannnn"
       },
       {
         "platform": "whatsapp",
-        "url": "https://wa.me/"
+        "url": "https://wa.me/8801602962187"
       }
     ]
   }

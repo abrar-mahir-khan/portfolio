@@ -125,10 +125,10 @@
     "projects": [
       {
         "show": true,
-        "title": "Mighty Mouthcare",
+        "title": "MAYAH",
         "category": "Website design / Front-end development",
-        "url": "https://mightymouthcare.com/",
-        "image": "",
+        "url": "https://www.mayah.co.uk/",
+        "image": "assets/uploads/mwlwvh34-mayah.png",
         "style": "one",
         "mockBar": "",
         "mockTag": "",
@@ -137,25 +137,25 @@
       },
       {
         "show": true,
-        "title": "Objects Store",
+        "title": "Jungle Squad",
         "category": "E-commerce / UI development",
-        "url": "https://example.com/objects-store",
-        "image": "",
+        "url": "https://junglesquad.com/",
+        "image": "assets/uploads/mwlwy5e2-junglesquad.png",
         "style": "two",
-        "mockTag": "OBJECTS / 01",
-        "mockHeadline": "Everyday\nessentials.",
-        "mockCaption": "CURATED GOODS — SHOP NOW ↗"
+        "mockTag": "",
+        "mockHeadline": "",
+        "mockCaption": ""
       },
       {
         "show": true,
-        "title": "Form Architecture",
+        "title": "Mighty Mouthcare",
         "category": "Portfolio / Interaction design",
-        "url": "https://example.com/form-architecture",
-        "image": "",
+        "url": "https://mightymouthcare.com/",
+        "image": "assets/uploads/mwlx1lzm-mighty-mouthcare.png",
         "style": "three",
-        "mockTag": "FORM / FUNCTION",
-        "mockHeadline": "Space\nto feel.",
-        "mockCaption": "ARCHITECTURE & INTERIORS"
+        "mockTag": "",
+        "mockHeadline": "",
+        "mockCaption": ""
       },
       {
         "show": true,

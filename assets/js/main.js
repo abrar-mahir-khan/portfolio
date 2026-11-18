@@ -65,6 +65,7 @@
       kickerLeft: "01 / A little intro",
       kickerRight: "About me",
       heading: "I turn thoughtful\ndesign into *living*\ndigital experiences.",
+      photo: "assets/img/abrar-about.jpg",
       lead: "I’m a front-end developer focused on bringing digital ideas to life through clean code, considered details and purposeful interaction.",
       text: "With experience translating Figma designs into responsive websites, I enjoy the space where design and development meet. I care about the small things — rhythm, spacing, movement and how every element feels to use.",
       linkLabel: "More about working together",
@@ -226,7 +227,7 @@
 
   // Arrow icons as inline SVG (identical on every device, no emoji on iPhone)
   const ARROW_PATHS = {
-    ne: '<line x1="0" y1="27" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>',
+    ne: '<line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>',
     se: '<line x1="7" y1="7" x2="17" y2="17"/><polyline points="17 7 17 17 7 17"/>',
     up: '<line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>'
   };
@@ -336,6 +337,10 @@
     setText($("#about .section-kicker span").eq(0), a.kickerLeft);
     setText($("#about .section-kicker span").eq(1), a.kickerRight);
     setHTML($("#about .section-heading"), rich(a.heading));
+    const aboutSrc = srcOf(a.photo);
+    const $aboutImg = $(".about-photo img");
+    if (a.photo && $aboutImg.attr("src") !== aboutSrc) $aboutImg.attr("src", aboutSrc);
+    $(".about-photo").prop("hidden", !a.photo);
     setText($(".intro__text .lead"), a.lead);
     const paras = String(a.text || "").split(/\n\s*\n/).map(function (t) { return t.trim(); }).filter(Boolean);
     const parasHTML = paras.map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("");
@@ -671,6 +676,7 @@
         F.text("about.kickerLeft", "Section label — left"),
         F.text("about.kickerRight", "Section label — right"),
         F.rich("about.heading", "Heading", { hint: HELP_RICH }),
+        F.image("about.photo", "Section photo (full background on mobile)", { max: 1600, hint: "Tall / portrait photos work best. Clear it to hide the photo." }),
         F.area("about.lead", "Lead paragraph"),
         F.area("about.text", "Body text", { rows: 6, hint: "Leave an empty line between paragraphs" }),
         F.text("about.linkLabel", "Link text"),

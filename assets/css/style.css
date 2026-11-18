@@ -1884,3 +1884,187 @@ html {
 ::-webkit-scrollbar-thumb:active {
   background: var(--accent)
 }
+
+
+/* ==========================================================================
+   About / intro section with portrait photo
+   desktop: photo panel bleeding off the left edge, facing the text
+   mobile : photo is the full-section background (stays fixed while you scroll)
+   ========================================================================== */
+.intro {
+  --ip: 140px;
+  background: var(--bg)
+}
+
+/* the section is a dark "stage" in both themes so the photo always works */
+:root.light .intro {
+  --bg: #111;
+  --surface: #191919;
+  --text: #f0eee9;
+  --muted: #9a9994;
+  --line: #343432;
+  --accent: var(--adm-accent, #d5ff45);
+  color: var(--text)
+}
+
+.about-photo {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none
+}
+
+.about-photo[hidden] {
+  display: none
+}
+
+.about-photo__sticky {
+  position: relative;
+  height: 100%;
+  overflow: hidden
+}
+
+.about-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover
+}
+
+.about-photo__sticky::after {
+  content: "";
+  position: absolute;
+  inset: 0
+}
+
+/* ---------- Desktop ---------- */
+@media(min-width:861px) {
+  .intro {
+    overflow: clip
+  }
+
+  .intro::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: -12vw;
+    top: 10%;
+    width: 60vw;
+    height: 80%;
+    background: radial-gradient(closest-side, rgba(255, 153, 51, .15), rgba(255, 153, 51, .05) 55%, transparent 78%);
+    pointer-events: none
+  }
+
+  .about-photo {
+    top: calc(-1 * var(--ip));
+    bottom: calc(-1 * var(--ip));
+    left: calc((100% - 100vw) / 2);
+    width: calc((100vw - 100%) / 2 + 47%)
+  }
+
+  .about-photo__sticky {
+    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 50%, rgba(0, 0, 0, .55) 78%, transparent 100%);
+    mask-image: linear-gradient(90deg, #000 0, #000 50%, rgba(0, 0, 0, .55) 78%, transparent 100%)
+  }
+
+  .about-photo img {
+    object-position: 30% 30%
+  }
+
+  .about-photo__sticky::after {
+    background:
+      linear-gradient(180deg, var(--bg) 0, transparent 15%, transparent 82%, var(--bg) 100%),
+      linear-gradient(90deg, rgba(17, 17, 17, .35), transparent 40%)
+  }
+
+  .intro__grid {
+    grid-template-columns: minmax(0, .95fr) minmax(0, 1.2fr);
+    column-gap: 4%
+  }
+
+  .intro__grid .section-heading,
+  .intro__grid .intro__text {
+    grid-column: 2
+  }
+
+  .intro__grid .section-heading {
+    font-size: clamp(40px, 5.2vw, 78px)
+  }
+
+  .intro__grid .intro__text {
+    margin-top: 12px;
+    max-width: 560px
+  }
+
+  /* Based in / Focus / Approach sit under the text, in the right column */
+  .intro__grid .about-meta {
+    grid-column: 2;
+    margin-top: 34px
+  }
+}
+
+/* ---------- Mobile & tablet: full-section photo background ---------- */
+@media(max-width:860px) {
+  .intro {
+    --ip: 110px;
+    background: #111;
+    --bg: #111;
+    --text: #f0eee9;
+    --muted: #c3c1ba;
+    --line: rgba(255, 255, 255, .2);
+    --accent: var(--adm-accent, #d5ff45);
+    color: var(--text)
+  }
+
+  .about-photo {
+    top: calc(-1 * var(--ip));
+    bottom: calc(-1 * var(--ip));
+    left: 0;
+    right: 0
+  }
+
+  .about-photo__sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh
+  }
+
+  .about-photo img {
+    object-position: 50% 30%
+  }
+
+  .about-photo__sticky::after {
+    background: linear-gradient(180deg, rgba(17, 17, 17, .9) 0, rgba(17, 17, 17, .5) 20%, rgba(17, 17, 17, .34) 42%, rgba(17, 17, 17, .7) 64%, rgba(17, 17, 17, .94) 100%)
+  }
+
+  .intro .section-heading,
+  .intro__text {
+    text-shadow: 0 2px 24px rgba(0, 0, 0, .6)
+  }
+
+  .intro__text {
+    margin-top: clamp(110px, 30vh, 280px)
+  }
+
+  .intro__grid {
+    padding-bottom: 0
+  }
+
+  .intro__grid .about-meta {
+    margin-top: 18px
+  }
+
+  .intro__text p {
+    color: rgba(240, 238, 233, .82)
+  }
+
+  .intro .section-star {
+    display: none
+  }
+}
+
+@media(max-width:640px) {
+  .intro {
+    --ip: 85px
+  }
+}
